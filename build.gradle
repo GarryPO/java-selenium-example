@@ -1,0 +1,38 @@
+plugins {
+    id "idea"
+    id 'com.github.johnrengelman.shadow' version '4.0.3'
+}
+group 'com.firstfewlines'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+mainClassName = 'com.firstfewlines.SeleniumSample'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
+dependencies {
+    compile('org.seleniumhq.selenium:selenium-java:3.141.59') {
+        exclude group: 'org.seleniumhq.selenium', module: 'selenium-android-driver'
+        exclude group: 'org.seleniumhq.selenium', module: 'selenium-iphone-driver'
+        exclude group: 'org.seleniumhq.selenium', module: 'selenium-safari-driver'
+        exclude group: 'org.webbitserver', module: 'webbit'
+        exclude group: 'commons-codec', module: 'commons-codec'
+        exclude group: 'cglib', module: 'cglib-nodep'
+    }
+    compile group: 'com.github.wumpz', name: 'diffutils', version: '2.2'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
+    compile 'io.github.prashant-ramcharan:webdriver-binary-downloader:1.2.2'
+
+
+
+}
+apply plugin: 'com.github.johnrengelman.shadow'
